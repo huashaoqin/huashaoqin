@@ -1,0 +1,40 @@
+# GRUB2 gfxmenu banksy theme
+# Designed for any resolution
+
+# Global Property
+title-text: ""
+desktop-image: "background.png"
+desktop-color: "#000000"
+terminal-font: "dejavu_mono_12"
+terminal-box: "terminal_box_*.png"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
+# Show the boot menu
++ boot_menu {
+  left = 75%
+  top = 47%
+  width = 22%
+  height = 60%
+  item_font = "dejavu_mono_12"
+  item_color = "#000000"
+  selected_item_color = "#A72153"
+  item_height = 38
+  item_spacing = 9
+  selected_item_pixmap_style = "select_*.png"
+}
+
+# Show a countdown message using the label component
++ label {
+  top = 76%
+  left = 77%
+  width = 36%
+  align = "left"
+  id = "__timeout__"
+  text = "Arrows  ▲ ▼  / %d s "
+  color = "#000000"
+  font = "dejavu_mono_12"
+}

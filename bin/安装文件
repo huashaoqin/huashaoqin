@@ -1,0 +1,19 @@
+######交换文件
+dd if=/dev/zero of=/swapfile bs=8192 count=1048576 status=progress
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+nano /etc/fstab
+
+
+useradd -m -g users -G audio,video,floppy,network,rfkill,scanner,optical,wheel,uucp,power -s /bin/zsh death
+
+mpc listall | mpc add
+nm-applet
+polybar
+ncmpcpp
+lxappearance
+xbindkeys --multikey
+xrandr --output eDP-1-1 --mode 1920x1080 --primary
+alsamixer
+pcmanfm
