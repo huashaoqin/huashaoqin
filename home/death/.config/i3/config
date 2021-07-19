@@ -1,0 +1,234 @@
+# 设置Mod
+set $mod Mod1
+
+#  设置锁屏
+bindsym XF86ScreenSaver exec lock
+
+#  设置声音
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% 
+bindsym $mod+Shift+plus exec pactl set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym $mod+Shift+minus exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec amixer set Master toggle 
+
+# 屏幕亮度控制使用背光
+bindsym XF86MonBrightnessUp exec xbacklight +5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -5 # decrease screen brightness
+
+# 窗口标题的字体。也将由栏使用，除非使用不同的字体
+#font pango:ttf-liberation-mono 12 
+font pango:DejaVu Sans Mono 10
+
+# 使用鼠标+$mod将浮动窗口拖动到所需位置
+floating_modifier $mod
+
+# 运行rofi
+bindsym $mod+d exec rofi -theme "~/.config/rofi/rofi-themes/slate_without_prompt.rasi" -show drun
+bindsym $mod+q exec rofi -show window
+
+# 启动终端
+bindsym $mod+Return exec xfce4-terminal
+
+#启动下拉终端
+bindsym $mod+Shift+t exec qterminal --drop
+
+# 启动ranger文件管理
+bindsym $mod+Shift+f exec i3-sensible-terminal -e ranger
+
+# 杀死窗口进程
+bindsym $mod+Shift+q kill
+
+# 改变焦点
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# 移动聚焦窗口
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# 运行屏保
+bindsym $mod+Shift+x exec i3-sensible-terminal -e cmatrix 
+
+# ncmpcpp音乐控制
+bindsym $mod+Ctrl+m exec i3-sensible-terminal -e ncmpcpp
+#bindsym $mod+Ctrl+p exec mpc play
+#bindsym $mod+Ctrl+o exec mpc pause
+#bindsym $mod+Ctrl+l exec mpc next
+#bindsym $mod+Ctrl+k exec mpc prev
+
+# 窗口移动
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# 左右拆分
+bindsym $mod+h split h
+
+# 上下拆分
+bindsym $mod+v split v
+
+# 进入窗口全屏
+bindsym $mod+f fullscreen toggle
+
+# 更改布局
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# 切换水平/浮动
+bindsym $mod+Shift+space floating toggle
+
+# 隐藏或显示窗口
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show
+
+# 在平铺/浮动窗口之间更改焦点
+bindsym $mod+space focus mode_toggle 
+
+# 聚焦父容器
+bindsym $mod+a focus parent
+
+# 导航下一个/上一个工作区
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+set $ws1 " "
+set $ws2 " "
+set $ws3 " "
+set $ws4 " "
+set $ws5 " "
+set $ws6 " "
+set $ws7 " "
+set $ws8 " "
+set $ws9 " "
+#set $ws9 " "
+#set $ws10" "
+#set $ws5 " "
+#set $ws5 " "
+#set $ws6 " "
+#set $ws1 " "
+#set $ws2 " "
+# 切换到工作区
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+# 将容器移动到工作区
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+
+# 自动将客户端放到特定工作区
+#assign [class="chrome"] $ws3
+#assign [class="netease-cloud-music"] $ws4
+#assign [class="wechat"] $ws3
+
+# 窗口集合
+for_window[class=^.*] border pixel 0
+for_window[window_role="pop-up"] floating enable
+for_window[window_role="task_dialog"] floating enbale
+for_window[class="netease-cloud-music"] floating enable
+for_window[class="VirtualBox Manager"] floating enable
+for_window[class="wechat"] floating enable
+for_window[class="vokoscreen"] floating enable
+for_window[class="vlc"] floating enable
+
+# 禁用鼠标
+focus_follows_mouse no
+
+# 重新加载配置文件
+bindsym $mod+Shift+c reload
+
+# 原地重新启动i3（保留布局/会话，可用于升级i3）
+bindsym $mod+Shift+r restart
+
+# 退出i3（退出X会话）
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '确认退出i3吗？' -b 'Yes,'"
+
+# 调整窗口大小（也可以使用鼠标）
+mode "resize" {
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# i3间隙配置内/外间隙
+gaps inner 10
+gaps outer 5
+
+# Others
+exec --no-startup-id xbindkeys
+exec --no-startup-id fcitx
+exec --no-startup-id mpd
+exec --no-startup-id optimus-manager-qt
+exec --no-startup-id nm-applet
+exec_always xautolock -time 10 -locker "/bin/lock
+exec . ~/.config/polybar/launch.sh
+exec compton -b
+exec ~/feh.sh
+#exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+#set $mode_gaps Gaps: (o) outer, (i) inner
+#set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+#set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+#bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+#for_window [class=^.*] floating enable
+
